@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :articles, param: :slug
-  root to: 'pages#home'
-  get 'pages/home'
+  
+  root to: 'articles#index'
+  #get 'pages/home'
   devise_for :users
+
+  resources :articles, param: :slug
+  resources :profiles, param: :username, only: [:show]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -9,6 +9,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :validate_username
 
+  def to_param
+    username
+  end
   
   attr_writer :login
     
