@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-
+    @related_articles = @article.find_related_tags
   end
 
   # GET /articles/new
@@ -73,6 +73,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def tagged
+    if params[:tag].present?
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.all
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -81,6 +89,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :body, :description)
+      params.require(:article).permit(:title, :body, :description, :tag_list)
     end
 end
