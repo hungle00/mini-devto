@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root to: 'articles#index'
   #get 'pages/home'
-  devise_for :users
+  devise_for :user
 
   resources :articles, param: :slug
   resources :profiles, param: :username, only: [:show]

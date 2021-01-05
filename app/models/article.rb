@@ -8,6 +8,8 @@ class Article < ApplicationRecord
     self.slug ||= "#{title.to_s.parameterize}-#{rand(36**6).to_s(36)}"
   end
 
+  scope :authored_by, -> (username) { where(user: User.where(username: username)) }
+
   def to_param
     slug
   end
