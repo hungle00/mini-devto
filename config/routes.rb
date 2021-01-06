@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  #get 'tags/index'
+  resources :tags, only: [:index]
   root to: 'articles#index'
   #get 'pages/home'
   devise_for :user

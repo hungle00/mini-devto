@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all.includes(:user)
     @articles = @articles.authored_by(params[:author]) if params[:author].present?
+    #@articles = @articles.tagged_with
     @articles_count = @articles.count
 
     @articles = @articles.order(created_at: :desc)
