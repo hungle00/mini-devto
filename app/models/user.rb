@@ -5,12 +5,29 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :articles, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :validate_username
 
   def to_param
     username
+  end
+
+  def favorite(article)
+    favorites.find_or_create_by(article: article)
+
+    article.reload
+  end
+
+  def unfavorite(article)
+    favorites.where(article: article).destroy_all
+
+    article.reload
+  end
+
+  def favorited?(article)
+    favorites.find_by(article_id: article.id).present?
   end
   
   # attr_writer :login
