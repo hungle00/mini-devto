@@ -21,7 +21,7 @@
 </p>
 
 <ul>
- <% @related_articles.each do |r| %>
+ <% @article.find_related_tags.each do |r| %>
     <li><%= r.title %></li>
   <% end %>
 </ul>
@@ -29,5 +29,25 @@
 <%= link_to "Favorite", article_favorite_index_path(@article) %>
 
 <br>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h4 class="mb-0">Add A Comment:</h4>
+    </div>
+    <div class="card-body">
+        <%# NOTE COMMENT STEP 3: Load the comment form. %>
+        <%= render "comments/form" %>
+    </div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <h4>Comments:</h4>
+    </div>
+    <%# NOTE COMMENT STEP 3: Wrap the comments in `<div id="comments">` so that you can select the wrapper when using javascript in `app/views/comments/create.js.erb`. %>
+    <div id="comments" class="card-body">
+        <%= render @article.comments %>
+    </div>
+</div>
+
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

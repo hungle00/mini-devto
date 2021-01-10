@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_article!
+  before_action :set_article!
 
   def create
     current_user.favorite(@article)
@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
 
   private
 
-  def find_article!
+  def set_article!
     @article = Article.find_by!(slug: params[:article_slug])
   end
 end
