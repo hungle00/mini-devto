@@ -1,24 +1,14 @@
-# README
+## MINI MEDIUM
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### Database schema
 
-* Ruby version
+### Dependencies
 
-* System dependencies
+* Devise - For implementing authentication
 
-* Configuration
+* acts_as_taggable - For implementing tagging functionality
 
-* Database creation
+*  ...
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### URL Path

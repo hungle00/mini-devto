@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Articles</h1>
-<p>Number of Article: <%= @articles_count %></p>
 
 <table>
   <thead>
@@ -9,8 +8,6 @@
       <th>Title</th>
       <th>Body</th>
       <th>Description</th>
-      <th>User Id</th>
-      <th>Tags</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,8 +18,6 @@
         <td><%= article.title %></td>
         <td><%= article.body %></td>
         <td><%= article.description %></td>
-        <td><%= article.user_id %></td>
-        <td><%= article.tag_list.count %></td>
         <td><%= link_to 'Show', article %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,7 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>

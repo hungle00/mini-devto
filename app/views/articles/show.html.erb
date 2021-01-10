@@ -20,9 +20,17 @@
   <%= @article.description %>
 </p>
 
+<p><strong>Tags</strong></p>
+<ul>
+  <% @article.tag_list.each do |tag| %>
+    <li><%= link_to tag, tagged_path(tag: tag) %></li>
+  <% end %></p>
+</ul>
+
+<p><strong>Articles same tag</strong></p>
 <ul>
  <% @article.find_related_tags.each do |r| %>
-    <li><%= r.title %></li>
+    <li><%= link_to r.title, article_path(slug: r.slug)  %></li>
   <% end %>
 </ul>
 
