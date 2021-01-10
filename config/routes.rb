@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :user
   get '/tagged', to: "articles#tagged", as: :tagged
   resources :articles, param: :slug do
-    resources :favorite, only: [:create, :destroy]
+    resource :favorite, only: %i[create destroy]
     resources :comments
   end
   resources :tags, only: [:index]
