@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :tags, only: [:index]
-  resources :profiles, param: :username, only: [:show]
+  resources :profiles, param: :username, only: [:show] do
+    resource :follow, only: [:create, :destroy]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

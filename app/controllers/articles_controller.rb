@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     #@related_articles = @article.find_related_tags
+    @author = @article.user.username
     @comment = Comment.new(article: @article)
   end
 
