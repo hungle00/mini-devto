@@ -15,6 +15,10 @@ class ArticlesController < ApplicationController
     @articles = @articles.order(created_at: :desc)
   end
 
+  def feed
+    @articles = Article.includes(:user).where(user: current_user.followeds)
+  end
+
   # GET /articles/1
   # GET /articles/1.json
   def show

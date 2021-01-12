@@ -1,0 +1,28 @@
+<h1>Articles</h1>
+<p>Number of Article: <%= @articles.count %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Description</th>
+      <th>User Id</th>
+      <th>Tags</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.body %></td>
+        <td><%= article.description %></td>
+        <td><%= article.user_id %></td>
+        <td><%= article.tag_list.count %></td>
+        <td><%= link_to 'Show', article %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

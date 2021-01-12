@@ -1,0 +1,26 @@
+// Place all the styles related to the Follows controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.follow-btn {
+    text-transform: uppercase;
+    border-color: #4090db;
+    color: #4090db;
+    margin-left: 20px;
+    &:visited, &:focus, &:hover {
+      border-color: #2D6396;
+      color: #2D6396;
+    }
+  }
+
+.unfollow-btn {
+    text-transform: uppercase;
+    border-color: #66bd2b;
+    background-color: #66bd2b;
+    color: white;
+    margin-left: 20px;
+    &:visited, &:focus, &:hover {
+      border-color: #47821F;
+      background-color: #47821F;
+      color: white;
+    }
+  }

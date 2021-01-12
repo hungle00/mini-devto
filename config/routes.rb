@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :articles, param: :slug do
     resource :favorite, only: %i[create destroy]
     resources :comments
+    get :feed, on: :collection
   end
   resources :tags, only: [:index]
   resources :profiles, param: :username, only: [:show] do

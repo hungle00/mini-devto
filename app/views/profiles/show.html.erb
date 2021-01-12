@@ -19,5 +19,9 @@
   <strong>Followings</strong>
   <%= @followeds_count %>
 </p>
-
+<% if current_user.following?(@user) %>
+<%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
+<% else %>
+  <%= button_to "Follow", profile_follow_path(@user), remote: true, method: :post, class: "follow-btn" %>
+<% end %>
 
