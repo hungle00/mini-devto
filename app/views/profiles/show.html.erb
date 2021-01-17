@@ -1,27 +1,38 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col">
+    <h2>Profile:</h2>
+    <p>
+      <strong>Title:</strong>
+      <%= @user.email %>
+    </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>Slug:</strong>
+      <%= @user.username %>
+    </p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @user.username %>
-</p>
+    <p>
+      <strong>Followers</strong>
+      <%= @followers_count %>
+    </p>
 
-<p>
-  <strong>Followers</strong>
-  <%= @followers_count %>
-</p>
+    <p>
+      <strong>Followings</strong>
+      <%= @followeds_count %>
+    </p>
+    <% if current_user.following?(@user) %>
+    <%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
+    <% else %>
+      <%= button_to "Follow", profile_follow_path(@user), remote: true, method: :post, class: "follow-btn" %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Followings</strong>
-  <%= @followeds_count %>
-</p>
-<% if current_user.following?(@user) %>
-<%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
-<% else %>
-  <%= button_to "Follow", profile_follow_path(@user), remote: true, method: :post, class: "follow-btn" %>
-<% end %>
+  <div class="col">
+    <%= render @user.articles %>
+  </div>
+
+</div>
+
+
 
