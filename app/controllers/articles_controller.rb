@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
   def feed
     @articles = Article.includes(:user).where(user: current_user.followeds)
+    @articles_count = @articles.count
   end
 
   # GET /articles/1

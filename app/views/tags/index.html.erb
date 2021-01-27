@@ -1,5 +1,6 @@
+<p><strong>All Tags</strong></p>
 <ul>
   <% @tags.each do |tag| %>
-    <li><%= tag %></li>
+    <li><%= link_to tag, tagged_path(tag: tag) %></li>
   <% end %>
 </ul>

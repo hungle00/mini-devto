@@ -3,15 +3,18 @@
   <div class="col">
     <h2>Profile:</h2>
     <p>
-      <strong>Title:</strong>
+      <strong>Email: </strong>
       <%= @user.email %>
     </p>
 
     <p>
-      <strong>Slug:</strong>
+      <strong>Username: </strong>
       <%= @user.username %>
     </p>
 
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, size: "200x200" %>
+    <% end %>
     <p>
       <strong>Followers</strong>
       <%= @followers_count %>

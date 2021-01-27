@@ -5,7 +5,8 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :body %>
+    <%= f.label :content %>
+    <%= f.rich_text_area :body %>
     <%= f.input :description %>
     <%= f.input :tag_list %>
   </div>
