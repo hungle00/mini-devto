@@ -9,6 +9,7 @@ class Article < ApplicationRecord
 
   has_rich_text :body
   has_one_attached :main_image
+  is_impressionable
   
   before_validation do
     self.slug ||= "#{title.to_s.parameterize}-#{rand(36**6).to_s(36)}"
@@ -20,5 +21,9 @@ class Article < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def self.impressions
+    impression.where(impressionable_type: "Article")
   end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'stats' => 'stats#index'
   root to: 'articles#index'
   #get 'pages/home'
   devise_for :user

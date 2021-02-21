@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: %i[index show]
+  impressionist :actions => [:show]
 
   include ArticlesHelper
 
@@ -24,6 +25,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     #@related_articles = @article.find_related_tags
+    impressionist(@article)
     @author = @article.user.username
     @comment = Comment.new(article: @article)
   end
@@ -97,6 +99,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :body, :description, tag_list: [])
+      params.require(:article).permit(:title, :body, :description, :tag_list)
     end
 end

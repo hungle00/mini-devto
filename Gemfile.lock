@@ -89,6 +89,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.6)
       concurrent-ruby (~> 1.0)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     loofah (2.8.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  impressionist
   jbuilder (~> 2.7)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
