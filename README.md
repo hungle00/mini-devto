@@ -4,7 +4,9 @@
 
 * Devise - For implementing authentication
 
-* acts_as_taggable - For implementing tagging functionality
+* acts_as_taggable - For implementing tagging 
+
+* impressionist - For count view page
 
 *  ...
 
@@ -18,6 +20,7 @@
 - GET and display lists of articles
 - Favorite articles
 - Follow / Unfollow other users
+- Statistic dashboard for authors
 
 
 ### Database schema

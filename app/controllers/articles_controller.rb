@@ -8,17 +8,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all.includes(:user)
-    @articles = @articles.authored_by(params[:author]) if params[:author].present?
-    @articles = @articles.favorited_by(params[:favorited]) if params[:favorited].present?
-    @articles_count = @articles.count
-
-    @articles = @articles.order(created_at: :desc)
-  end
-
-  def feed
-    @articles = Article.includes(:user).where(user: current_user.followeds)
-    @articles_count = @articles.count
+    @articles = Article.all
+    #@articles = Article.all.includes(:user)
   end
 
   # GET /articles/1
@@ -80,14 +71,6 @@ class ArticlesController < ApplicationController
         format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
         format.json { head :no_content }
       end
-    end
-  end
-
-  def tagged
-    if params[:tag].present?
-      @articles = Article.tagged_with(params[:tag])
-    else
-      @articles = Article.all
     end
   end
 

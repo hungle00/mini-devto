@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   
   get 'stats' => 'stats#index'
-  root to: 'articles#index'
-  #get 'pages/home'
+  root to: 'home#index'
+
   devise_for :user
-  get '/tagged', to: "articles#tagged", as: :tagged
+  get '/tagged', to: "home#tagged", as: :tagged
+  get 'feed' => 'home#feed'
+
   resources :articles, param: :slug do
     resource :favorite, only: %i[create destroy]
     resources :comments
-    get :feed, on: :collection
   end
   resources :tags, only: [:index]
   resources :profiles, param: :username, only: [:show] do

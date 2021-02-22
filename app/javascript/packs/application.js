@@ -24,25 +24,39 @@ require("@rails/actiontext")
 const Chart = require('chart.js')
 
 document.addEventListener('turbolinks:load', () => {
-    console.log("Chart: ", Chart)
-    var ctx = document.getElementById('myChart').getContext('2d');
+    //var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('page-views')
+    //debugger
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
-
         // The data for our dataset
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: JSON.parse(ctx.dataset.labels),
             datasets: [{
-                label: 'My First dataset',
+                label: 'Page Views',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: JSON.parse(ctx.dataset.views),
             }]
         },
+    });
 
-        // Configuration options go here
-        options: {}
+    var ctx = document.getElementById('uniq-page-views')
+    //debugger
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: JSON.parse(ctx.dataset.labels),
+            datasets: [{
+                label: 'Unique Page Views',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: JSON.parse(ctx.dataset.views),
+            }]
+        },
     });
 })
 
