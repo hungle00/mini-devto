@@ -1,0 +1,31 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <div class="col-5">
+    <section>
+      <%= avatar_for @user %>
+      <h1><%= @user.username %></h1>
+      <span><%= link_to "view my profile", profile_path(@user) %></span>
+      <span><b>Articles:</b> <%= @user.articles.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+      <% if @users.any? %>
+        <div class="user_avatars">
+          <% @users.each do |user| %>
+            <%= user.username %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+  <div class="col">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <% @users.each do |user| %>
+          <%= link_to avatar_for(user, size: 100), profile_path %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

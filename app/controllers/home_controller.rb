@@ -22,8 +22,4 @@ class HomeController < ApplicationController
     @articles = Article.includes(:user).where(user: current_user.followeds)
     @articles_count = @articles.count
   end
-
-  def most_viewed
-    @articles = Article.all
-  end
 end

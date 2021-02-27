@@ -21,42 +21,21 @@ import './stylesheets/application.scss';
 require("trix")
 require("@rails/actiontext")
 
-const Chart = require('chart.js')
+require('./chart');
+import { hello } from './hello'
 
-document.addEventListener('turbolinks:load', () => {
-    //var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx = document.getElementById('page-views')
-    //debugger
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: JSON.parse(ctx.dataset.labels),
-            datasets: [{
-                label: 'Page Views',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: JSON.parse(ctx.dataset.views),
-            }]
-        },
-    });
+function greet_user(last_name, first_name) {
+  hello(last_name + " " + first_name);
+}
 
-    var ctx = document.getElementById('uniq-page-views')
-    //debugger
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: JSON.parse(ctx.dataset.labels),
-            datasets: [{
-                label: 'Unique Page Views',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: JSON.parse(ctx.dataset.views),
-            }]
-        },
-    });
+function readyFn() {
+  console.log("Hello World!")
+};
+
+$(document).on('turbolinks:load', readyFn)
+
+$(document).ready(() => {
+  greet_user('steve', 'jobs')
+  //$('button#greet-user-button').on('click', () => greet_user('steve', 'jobs'))
 })
 

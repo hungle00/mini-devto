@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   resources :tags, only: [:index]
   resources :profiles, param: :username, only: [:show] do
+    member do
+      get :following, :followers
+    end
     resource :follow, only: [:create, :destroy]
   end
 

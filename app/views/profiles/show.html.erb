@@ -1,37 +1,28 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="col">
-    <h2>Profile:</h2>
-    <p>
-      <strong>Email: </strong>
-      <%= @user.email %>
-    </p>
+  <div class="col-5">
+    <section>
+      <h2>Profile: <%= @user.username %></h2>
+      <p>
+        <strong>Email: </strong>
+        <%= @user.email %>
+      </p>
+      <%= avatar_for @user %>
+    </section>
 
-    <p>
-      <strong>Username: </strong>
-      <%= @user.username %>
-    </p>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
 
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, size: "200x200" %>
-    <% end %>
-    <p>
-      <strong>Followers</strong>
-      <%= @followers_count %>
-    </p>
-
-    <p>
-      <strong>Followings</strong>
-      <%= @followeds_count %>
-    </p>
     <% if current_user.following?(@user) %>
-    <%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
+      <%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
     <% else %>
       <%= button_to "Follow", profile_follow_path(@user), remote: true, method: :post, class: "follow-btn" %>
     <% end %>
   </div>
 
   <div class="col">
+    <h2>Posts (<%= @user.articles.count %>)</h2>
     <%= render @user.articles %>
   </div>
 
