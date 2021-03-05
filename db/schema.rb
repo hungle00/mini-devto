@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_155845) do
+ActiveRecord::Schema.define(version: 2021_03_04_152759) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,15 @@ ActiveRecord::Schema.define(version: 2021_02_20_155845) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "notification_type", null: false
+    t.string "title"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -158,5 +167,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_155845) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "articles"
   add_foreign_key "favorites", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "taggings", "tags"
 end

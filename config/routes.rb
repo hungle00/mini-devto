@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'notifications/index'
   get 'stats' => 'stats#index'
   root to: 'home#index'
 
@@ -11,7 +12,9 @@ Rails.application.routes.draw do
     resource :favorite, only: %i[create destroy]
     resources :comments
   end
+  resources :notifications, only: [:index]
   resources :tags, only: [:index]
+
   resources :profiles, param: :username, only: [:show] do
     member do
       get :following, :followers
