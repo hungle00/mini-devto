@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_152759) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_152759) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
-    t.integer "article_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_152759) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "article_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_favorites_on_article_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_152759) do
   create_table "notifications", force: :cascade do |t|
     t.string "notification_type", null: false
     t.string "title"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"

@@ -5,7 +5,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item active">
                 <%= link_to "Feeds", feed_path, class:"nav-link" %>
             </li>
@@ -16,17 +16,17 @@
                 <%= link_to "Notifications", notifications_path, class:"nav-link" %>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
             <% if current_user %>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.username %>
+            <li class="nav-item dropdown px-4">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.username %>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <%= link_to "Account Settings", edit_user_registration_path, class:"dropdown-item" %>
-                    <%= link_to "Profile", profile_path(current_user.username), class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                    <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
+                <li><%= link_to "Profile", profile_path(current_user.id), class:"dropdown-item" %></li>
+                <li class="dropdown-divider"></li>
+                <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
                 </div>
             </li>
             <% else %>

@@ -15,27 +15,20 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import 'bootstrap';
-import './stylesheets/application.scss';
+//import 'bootstrap';
+//import './stylesheets/application.scss';
+import 'bootstrap/dist/js/bootstrap'
+import "bootstrap/dist/css/bootstrap";
+import "controllers"
 
 require("trix")
 require("@rails/actiontext")
 
 require('./chart');
-import { hello } from './hello'
-
-function greet_user(last_name, first_name) {
-  hello(last_name + " " + first_name);
-}
 
 function readyFn() {
   console.log("Hello World!")
 };
 
-$(document).on('turbolinks:load', readyFn)
-
-$(document).ready(() => {
-  greet_user('steve', 'jobs')
-  //$('button#greet-user-button').on('click', () => greet_user('steve', 'jobs'))
-})
+document.addEventListener('turbolinks:load', readyFn)
 
