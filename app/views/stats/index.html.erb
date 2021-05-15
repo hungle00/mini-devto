@@ -5,8 +5,8 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">7 Days Views</div>
-      <div class="card-body">
-        <canvas id="page-views" data-labels="<%= @count_by_date.keys %>" 
+      <div class="card-body" data-controller="chart">
+        <canvas data-chart-target="output" data-labels="<%= @count_by_date.keys %>" 
                 data-views="<%= @count_by_date.values %>"></canvas>
       </div>
     </div>
@@ -14,20 +14,11 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">7 Days Unique Views</div>
-      <div class="card-body">
-        <canvas id="uniq-page-views" data-labels="<%= @uniq_count_by_date.keys %>" 
+      <div class="card-body" data-controller="chart">
+        <canvas data-chart-target="output" data-labels="<%= @uniq_count_by_date.keys %>" 
                 data-views="<%= @uniq_count_by_date.values %>"></canvas>
       </div>
     </div>
     </div>
   </div>
-</div>
-
-<div data-controller="hello">
-  <button data-action="click->hello#greet">
-    Greet
-  </button>
-
-  <span data-hello-target="output">
-  </span>
 </div>

@@ -5,8 +5,12 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.label :content %>
-    <%= f.rich_text_area :body %>
+    <div data-controller="composer">
+      <%= f.label :content %>
+      <%= f.rich_text_area :body, data: { "composer-target": "tweet", "action": "input->composer#preview" } %>
+
+      <div data-composer-target="output"></div>
+    </div>
     <%= f.input :description %>
     <%= f.input :tag_list, multiple: :true, class: "selectize" %>
   </div>

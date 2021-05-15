@@ -24,7 +24,7 @@ import "controllers"
 require("trix")
 require("@rails/actiontext")
 
-require('./chart');
+//require('./chart');
 
 function readyFn() {
   console.log("Hello World!")

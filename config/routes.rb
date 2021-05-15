@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'feed' => 'home#feed'
 
   resources :articles, param: :slug do
+    post 'preview', on: :new
     resource :favorite, only: %i[create destroy]
     resources :comments
   end
