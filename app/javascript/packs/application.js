@@ -30,5 +30,5 @@ function readyFn() {
   console.log("Hello World!")
 };
 
-document.addEventListener('turbolinks:load', readyFn)
+//document.addEventListener('turbolinks:load', readyFn)
 

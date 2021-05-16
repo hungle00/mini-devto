@@ -7,20 +7,24 @@
 <%= link_to 'New Article', new_article_path %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <%= render @articles %>
   </div>
-  <div class="col-md-4">
-    <h3>All Tags</h3>
-    <% @tags.each do |tag| %>
-      <%= link_to tag, tagged_path(tag: tag), class: "btn btn-primary" %>
-    <% end %>
-
-    <h3>View Count</h3>
-    <ul>
-      <% @articles.each do |article| %>
-        <li><%= article.title %> - <%= article.impressions.size %></li>
+  <div class="col-md-5 ps-4">
+    <div>
+      <h3>All Tags</h3>
+      <% @tags.each do |tag| %>
+        <%= link_to tag, tagged_path(tag: tag), class: "btn btn-sm btn-outline-primary" %>
       <% end %>
-    </ul>
+    </div>
+    <br>
+    <div>
+      <h3>Top Views</h3>
+      <ul>
+        <% @articles.each do |article| %>
+          <li><%= article.title %> - <%= article.impressions.size %></li>
+        <% end %>
+      </ul> 
+    </div>
   </div>
 </div>
