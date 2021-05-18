@@ -3,11 +3,8 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = [ "tweet", "output" ]
 
-  connect() {
-    this.preview();   
-  }
-
-  preview() {
+  preview(event) {
+    event.preventDefault();
     const content = this.tweetTarget.value;
     console.log(content)
     let preview = this.outputTarget

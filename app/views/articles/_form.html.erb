@@ -7,8 +7,8 @@
     <%= f.input :title %>
     <div data-controller="composer">
       <%= f.label :content %>
-      <%= f.rich_text_area :body, data: { "composer-target": "tweet", "action": "input->composer#preview" } %>
-
+      <%= f.rich_text_area :body, data: { "composer-target": "tweet" } %>
+      <button data-action="click->composer#preview" class="btn btn-sm btn-outline-primary my-2">Preview</button>
       <div data-composer-target="output"></div>
     </div>
     <%= f.input :description %>
