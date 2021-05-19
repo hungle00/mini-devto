@@ -79,6 +79,13 @@ class ArticlesController < ApplicationController
     render plain: preview
   end
 
+  def relative
+    @article = Article.find_by!(slug: params[:slug])
+    @articles = @article.find_related_tags
+
+    render json: @articles
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article

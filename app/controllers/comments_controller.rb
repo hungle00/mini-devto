@@ -19,8 +19,13 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create(comment_params)
     @comment.user = current_user
 
-    respond_to do |format|
-      if @comment.save
+    if @comment.save
+      render partial: 'comment', locals: { comment: @comment }, status: :ok
+        #render partial: 'show', locals: { comment: comment }, status: :ok
+    else
+      render partial: 'form', locals: { comment: @comment }, status: :unprocessable_entity
+    end
+=begin
         format.html { redirect_to @article, notice: 'Comment was successfully created.' }
         format.js
         format.json { render :show, status: :created, location: @comment }
@@ -29,7 +34,7 @@ class CommentsController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
         format.js
       end
-    end
+=end
   end
 
   # PATCH/PUT /comments/1

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   resources :articles, param: :slug do
     post 'preview', on: :new
+    member do
+      get :relative
+    end
     resource :favorite, only: %i[create destroy]
     resources :comments
   end
