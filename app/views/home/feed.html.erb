@@ -3,8 +3,18 @@
 <h1>Feeds</h1>
 <p>Number of Article: <%= @articles_count %></p>
 
-<div class="card" style="width: 60%">
-  <%= render @articles %>
+<div class="row">
+  <div class="col-md-8 row">
+    <%= render @articles %>
+  </div>
+  <div class="col-md-4 ps-4">
+    <div class="card ms-4">
+      <h4 class="card-header">Reading List</h5>
+      <div class="card-body">
+        Hello
+      </div>
+    </div>
+  </div>
 </div>
 
 
