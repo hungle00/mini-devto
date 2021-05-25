@@ -4,7 +4,9 @@
 <p>Number of Article: <%= @articles_count %></p>
 
 <div class="row">
-  <%= render @articles %>
+  <% @articles.each do |article| %>
+    <%= render 'home/article', article: article %>
+  <% end %>
 </div>
 
 

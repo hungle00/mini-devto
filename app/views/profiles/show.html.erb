@@ -29,7 +29,7 @@
         <div class="card-body">
           <h4 class="card-title"><%= link_to article.title, article %></h4>
           <h6 class="card-subtitle mb-2 text-muted">Posted in: <%= article.created_at.strftime("%b %d") %></h6>
-          <p class="card-text"><%= article.description %></p>
+          <p class="card-text">Upvote: <%= article.favorites_count %></p>
         </div>
       </div>
     <% end %>

@@ -11,14 +11,9 @@
       <i><%= link_to @author, profile_path(@author) %></i>
     </p>
     <hr>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @article.description %>
-    </p>
-    <br>
-
-    <%= @article.body %>
+    <div class="bg-light">
+      <%= @article.body %>
+    </div>
 
     <hr>
     <div data-controller="comments">
@@ -46,9 +41,9 @@
 
   <div class="col-sm-4">
     <div>
-      <p><i>Upvote: <%= @article.favorites_count %></i><p>
-      <%= link_to "Up", article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary' %>
-      <%= link_to "Down", article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger' %>
+      <p class=""><i>Upvote: <%= @article.favorites_count %></i><p>
+      <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary d-inline' %>
+      <%= link_to '<i class="fas fa-thumbs-down"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger d-inline' %>
     </div>
 
     <p><strong>Tags</strong></p>
@@ -68,7 +63,7 @@
 
     <% if @article.user == current_user %>
       <div class="mt-4">
-        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-secondary' %> |
+        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %> |
         <%= link_to 'Back', articles_path, class: 'btn btn-light' %>
       </div>
     <% end %>
