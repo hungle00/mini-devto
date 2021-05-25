@@ -3,8 +3,10 @@
 <h1>Articles</h1>
 <p>Number of Article: <%= @articles_count %></p>
 
-<div class="card" style="width: 60%">
-  <%= render @articles %>
+<div class="row">
+  <% @articles.each do |article| %>
+    <%= render 'home/article', article: article %>
+  <% end %>
 </div>
 
 

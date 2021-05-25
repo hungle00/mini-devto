@@ -8,7 +8,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = current_user.articles.published
+    @draft_articles = current_user.articles.draft
     #@articles = Article.all.includes(:user)
   end
 
@@ -94,6 +95,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :body, :description, :tag_list)
+      params.require(:article).permit(:title, :body, :tag_list)
     end
 end

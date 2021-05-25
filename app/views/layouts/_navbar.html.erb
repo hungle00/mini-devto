@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <%= link_to "Mini Medium", root_path, class:"navbar-brand"%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
                 <%= link_to "Feeds", feed_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-                <%= link_to "Hot Articles", articles_path, class:"nav-link" %>
+                <%= link_to "My Articles", articles_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
                 <%= link_to "Notifications", notifications_path, class:"nav-link" %>
@@ -24,7 +24,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                 <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
-                <li><%= link_to "Profile", profile_path(current_user.id), class:"dropdown-item" %></li>
+                <li><%= link_to "Profile", profile_path(current_user.username), class:"dropdown-item" %></li>
                 <li class="dropdown-divider"></li>
                 <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
                 </div>

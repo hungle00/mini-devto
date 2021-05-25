@@ -1,18 +1,18 @@
-<div class="card article-<%= article.id%>">
-  <div class="card-header">
-    <h3><%= link_to article.title, article %></h3>
-  </div>
-  <div class="card-body">
-    <p>Description: <%= article.description %></p>
-    <p>Author: <%= article.user.username %></p>
-    <p><%= article.created_at.strftime("%b %d") %>
-  </div>
-  <div class="card-footer">
-    <div class="btn-group">
-      <% if article.user == current_user %>
-        <%= link_to "Edit", edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
-        <%= link_to "Destroy", article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+      <div class="card article-<%= article.id%>">
+        <div class="card-body">
+          <div class="card-title position-relative">
+            <h4><%= link_to article.title, article %></h4>
+            <div class="position-absolute top-0 end-0" data-controller="published">
+              <% if article.published? %>
+                <a class="btn btn-sm btn-warning" data-action="click->published#publish">Draft</a>
+              <% else %>
+                <a class="btn btn-sm btn-primary" data-action="click->published#unpublish">Published</a>
+              <% end %>
+            </div>
+          </div>
+          <p class="card-text"><p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
+          <p class="card-text">Posted in: <%= article.created_at.strftime("%b %d") %></p>
+          <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+        </div>
+      </div>

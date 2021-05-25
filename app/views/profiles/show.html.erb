@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
-<div class="row">
-  <div class="col-5">
-    <section>
-      <h2>Profile: <%= @user.username %></h2>
-      <p>
-        <strong>Email: </strong>
-        <%= @user.email %>
-      </p>
+<div class="row mt-4">
+  <div class="col-6">
+    <section>  
+      <h2 class="t-3 mb-3">Welcome to <%= @user.username %>'s page</h2>
+      <div class="b-3">
+        <p>Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
+        <p>Email: <%= @user.email %></p>
+      </div>
       <%= avatar_for @user %>
     </section>
 
@@ -21,9 +21,18 @@
     <% end %>
   </div>
 
-  <div class="col">
-    <h2>Posts (<%= @user.articles.count %>)</h2>
-    <%= render @user.articles %>
+  <div class="col-6">
+    <h3><%= pluralize(@user.articles.count, 'article') %></h3>
+    <hr>
+    <% @user.articles.each do |article| %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= link_to article.title, article %></h4>
+          <h6 class="card-subtitle mb-2 text-muted">Posted in: <%= article.created_at.strftime("%b %d") %></h6>
+          <p class="card-text">Upvote: <%= article.favorites_count %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
 
 </div>

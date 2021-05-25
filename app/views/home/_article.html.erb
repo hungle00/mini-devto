@@ -1,0 +1,19 @@
+<div class="card article-<%= article.id%> col-6">
+  <div class="card-header">
+    <h3><%= article.title %></h3>
+  </div>
+  <div class="card-body">
+    <p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
+    <p>Author: <%= article.user.username %></p>
+    <p>Posted in: <%= article.created_at.strftime("%b %d") %></p>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Read more", article, class: "btn btn-sm btn-primary" %>
+    <div class="btn-group ms-4">
+      <% if article.user == current_user %>
+        <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

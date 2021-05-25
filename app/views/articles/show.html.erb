@@ -2,26 +2,20 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <h2>
+    <h2 class="mt-2">
       <strong><%= @article.title %></strong>    
     </h2>
 
-    <p>
-      <strong>Author</strong>
+    <p class="lead">
+      by
       <i><%= link_to @author, profile_path(@author) %></i>
     </p>
-
-    <p>
-      <strong>Body:</strong>
+    <hr>
+    <div class="bg-light">
       <%= @article.body %>
-    </p>
+    </div>
 
-    <p>
-      <strong>Description:</strong>
-      <%= @article.description %>
-    </p>
-
-    <br>
+    <hr>
     <div data-controller="comments">
       <div class="card mb-3">
         <%# NOTE COMMENT STEP 3: Wrap the comments in `<div id="comments">` so that you can select the wrapper when using javascript in `app/views/comments/create.js.erb`. %>
@@ -42,16 +36,14 @@
         </div>
       </div>
     </div>
-
-    <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-secondary' %> |
-    <%= link_to 'Back', articles_path, class: 'btn btn-light' %>
+    
   </div>
 
   <div class="col-sm-4">
     <div>
-      <p><i>Upvote: <%= @article.favorites_count %></i><p>
-      <%= link_to "Up", article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary' %>
-      <%= link_to "Down", article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger' %>
+      <p class=""><i>Upvote: <%= @article.favorites_count %></i><p>
+      <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary d-inline' %>
+      <%= link_to '<i class="fas fa-thumbs-down"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger d-inline' %>
     </div>
 
     <p><strong>Tags</strong></p>
@@ -66,6 +58,15 @@
         data-relative-target="articles"
         data-relative-url-value="<%= relative_article_path(@article) %>">
     </ul>
+
+    <hr>
+
+    <% if @article.user == current_user %>
+      <div class="mt-4">
+        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %> |
+        <%= link_to 'Back', articles_path, class: 'btn btn-light' %>
+      </div>
+    <% end %>
 
   </div>
 </div>
