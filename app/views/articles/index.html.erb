@@ -6,11 +6,11 @@
 </div>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-6 publish">
     <h2>Published</h2>
     <%= render @articles %>
   </div>
-  <div class="col-6">
+  <div class="col-6 draft">
     <h2>Draft</h2>
     <% @draft_articles.each do |article| %>
       <%= render 'article', article: article %>

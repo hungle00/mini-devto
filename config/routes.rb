@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     post 'preview', on: :new
     member do
       get :relative
+      put :publish, :unpublish
     end
+
     resource :favorite, only: %i[create destroy]
     resources :comments
   end

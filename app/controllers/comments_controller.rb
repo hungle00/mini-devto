@@ -25,16 +25,6 @@ class CommentsController < ApplicationController
     else
       render partial: 'form', locals: { comment: @comment }, status: :unprocessable_entity
     end
-=begin
-        format.html { redirect_to @article, notice: 'Comment was successfully created.' }
-        format.js
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js
-      end
-=end
   end
 
   # PATCH/PUT /comments/1

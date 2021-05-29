@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   before_action :authenticate_user!, except: %i[index show]
   impressionist :actions => [:show]
 
@@ -85,6 +85,18 @@ class ArticlesController < ApplicationController
     @articles = @article.find_related_tags
 
     render json: @articles
+  end
+
+  def publish
+    @article.update(published: true)
+    render partial: 'article', locals: { article: @article }, status: :ok
+    #redirect_to articles_url
+  end
+
+  def unpublish
+    @article.update(published: false)
+    render partial: 'article', locals: { article: @article }, status: :ok
+    #redirect_to articles_url
   end
 
   private

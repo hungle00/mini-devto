@@ -1,12 +1,14 @@
-      <div class="card article-<%= article.id%>">
+      <div class="card article-<%= article.id%>" data-controller="published">
         <div class="card-body">
           <div class="card-title position-relative">
             <h4><%= link_to article.title, article %></h4>
-            <div class="position-absolute top-0 end-0" data-controller="published">
+            <div class="position-absolute top-0 end-0">
               <% if article.published? %>
-                <a class="btn btn-sm btn-warning" data-action="click->published#publish">Draft</a>
+                <%= link_to 'Unpublish', unpublish_article_path(article), method: :put, class: 'btn btn-sm btn-warning',
+                    remote: true, data: { action: "ajax:success->published#unpublish" } %>
               <% else %>
-                <a class="btn btn-sm btn-primary" data-action="click->published#unpublish">Published</a>
+                <%= link_to 'Publish', publish_article_path(article), method: :put, class: 'btn btn-sm btn-success',
+                    remote: true, data: { action: "ajax:success->published#publish" } %>
               <% end %>
             </div>
           </div>
