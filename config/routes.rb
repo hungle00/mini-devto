@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   get 'notifications/index'
   get 'stats' => 'stats#index'
   root to: 'home#index'
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
     end
 
     resource :favorite, only: %i[create destroy]
+    resource :clip, only: %i[create destroy]
     resources :comments
   end
   resources :notifications, only: [:index]

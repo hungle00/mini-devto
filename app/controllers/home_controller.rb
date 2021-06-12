@@ -20,6 +20,7 @@ class HomeController < ApplicationController
 
   def feed
     @articles = Article.includes(:user).where(user: current_user.followeds)
-    @articles_count = @articles.count
+
+    @clips = current_user.clips
   end
 end

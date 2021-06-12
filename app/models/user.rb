@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :clips, dependent: :destroy
 
   has_many :follower_relationships, foreign_key: :followed_id, class_name: 'Follow'
   has_many :followers, through: :follower_relationships, source: :follower
@@ -52,22 +53,23 @@ class User < ApplicationRecord
     favorites.find_by(article_id: article.id).present?
   end
   
-  # attr_writer :login
-    
-  # def login
-  #   @login || username || email
-  # end
+  def save(article)
+    clips.find_or_create_by(article: article)
+
+    article.reload
+  end
+
+  def unsave(article)
+    clips.where(article: article).destroy_all
+
+    article.reload
+  end
+
+  def saved?(article)
+    clips.find_by(article_id: article.id).present?
+  end
 
   def validate_username
     errors.add(:username, :invalid) if User.where(email: username).exists?
   end
-
-  # def self.find_for_database_authentication(warden_conditions)
-  #   conditions = warden_conditions.dup
-  #   if login = conditions.delete(:login)
-  #     where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
-  #   elsif conditions.key?(:username) || conditions.key?(:email)
-  #     where(conditions.to_h).first
-  #   end
-  # end
 end

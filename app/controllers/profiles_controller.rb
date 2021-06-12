@@ -7,11 +7,13 @@ class ProfilesController < ApplicationController
   end
 
   def following
-    @title = "Following"
+    #@title = "Following"
     #@user = User.find(params[:id])  
     @user = User.find_by(username: params[:username])
     @users = @user.followeds
-    render 'show_follow'
+    #render json: @users
+    render layout: false
+    #render 'show_follow'
   end
 
   def followers

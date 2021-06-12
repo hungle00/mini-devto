@@ -13,3 +13,12 @@
     followers
   </a>
 </div>
+
+<!-- Button trigger modal -->
+<div data-controller="following"
+    data-following-url-value="<%= following_profile_path(@user) %>">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-action="click->following#show">
+    Following
+  </button>
+</div>
+

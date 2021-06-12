@@ -1,19 +1,15 @@
-<div class="card article-<%= article.id%> col-6">
-  <div class="card-header">
-    <h3><%= article.title %></h3>
-  </div>
+<div class="card article-<%= article.id %> border-0 position-relative">
   <div class="card-body">
-    <p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
-    <p>Author: <%= article.user.username %></p>
-    <p>Posted in: <%= article.created_at.strftime("%b %d") %></p>
-  </div>
-  <div class="card-footer">
-    <%= link_to "Read more", article, class: "btn btn-sm btn-primary" %>
-    <div class="btn-group ms-4">
-      <% if article.user == current_user %>
-        <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
-        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+    <h6 class="card-subtitle mb-2 text-muted bg-light"><%= article.user.username %> posted:</h6>
+    <h4 class="card-title"><%= link_to article.title, article %></h4>
+    <p class="card-text"><i><%= truncate(article.body.to_plain_text, length: 60) %></i></p>
+    <div class="card-text">
+      <%= article.created_at.strftime("%b %d") %> | 
+      <% if current_user.saved?(article) %>
+        <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :delete %>
+      <% else %>
+        <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :post %>
       <% end %>
-    </div>
+    </div> 
   </div>
 </div>
