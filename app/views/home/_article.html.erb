@@ -1,6 +1,10 @@
 <div class="card article-<%= article.id %> border-0 position-relative">
   <div class="card-body">
-    <h6 class="card-subtitle mb-2 text-muted bg-light"><%= article.user.username %> posted:</h6>
+    <h6 class="card-subtitle mb-2 text-muted bg-light"
+      data-controller="hovercard"
+      data-hovercard-url-value="<%= hovercard_article_path(article) %>">
+      <%= article.user.username %> posted:
+    </h6>
     <h4 class="card-title"><%= link_to article.title, article %></h4>
     <p class="card-text"><i><%= truncate(article.body.to_plain_text, length: 60) %></i></p>
     <div class="card-text">

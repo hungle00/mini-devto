@@ -1,0 +1,23 @@
+<% @user ||= current_user %>
+<div class="stats mt-4">
+  <a href="<%= following_profile_path(@user) %>" class="mx-2">
+    <strong id="following" class="stat">
+      <%= @user.followeds.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_profile_path(@user) %>" class="mx-2">
+    <strong id="followers" class="stat">
+      <%= @user.followers.count %>
+    </strong>
+    followers
+  </a>
+
+  <% if current_user.following?(@user) %>
+    <%= button_to "Unfollow", profile_follow_path(@user), remote: true, method: :delete, class: "unfollow-btn" %>
+  <% else %>
+    <%= button_to "Follow", profile_follow_path(@user), remote: true, method: :post, class: "follow-btn" %>
+  <% end %>
+
+</div>
+

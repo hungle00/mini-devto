@@ -3,7 +3,7 @@ class ClipsController < ApplicationController
   before_action :set_article!
 
   def create
-    current_user.save(@article)
+    current_user.save_article(@article)
     redirect_to feed_path, notice: 'Article was successfully saved.'
   end
 

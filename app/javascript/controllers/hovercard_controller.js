@@ -1,4 +1,3 @@
-import { Modal } from "bootstrap";
 import { Controller } from "stimulus"
 
 export default class extends Controller {
@@ -7,11 +6,9 @@ export default class extends Controller {
 
   connect() {
     console.log(this.urlValue)
-    //.then(resp => resp.json())
-    //.then(users => console.log(users))
   }
 
-  show() {
+  /*show() {
     if(this.hasModalTarget) {
       console.log(modalTarget)
     } else {
@@ -23,5 +20,5 @@ export default class extends Controller {
         this.element.appendChild(fragment);
       });
     }
-  }
+  }*/
 }

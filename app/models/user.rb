@@ -53,7 +53,7 @@ class User < ApplicationRecord
     favorites.find_by(article_id: article.id).present?
   end
   
-  def save(article)
+  def save_article(article)
     clips.find_or_create_by(article: article)
 
     article.reload

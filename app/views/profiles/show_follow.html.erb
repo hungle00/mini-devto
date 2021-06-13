@@ -1,0 +1,29 @@
+<% provide(:title, @title) %>
+<div class="row mt-4">
+  <div class="col-6">
+    <section>  
+      <h2 class="t-3 mb-2"><%= @user.username %>'s page</h2>
+      <i>Joined <%= time_ago_in_words(@user.created_at) %> ago</i>
+    </section>
+
+    <section class="py-2">
+      <%= avatar_for @user %>
+      <%= render 'profiles/follows' %>
+    </section>
+  </div>
+  
+  <div class="col-6">
+    <h3><%= @title %></h3>
+    <hr>
+    <% if @users.any? %>
+      <div class="row">
+        <% @users.each do |user| %>
+          <div class="col-4">
+            <h4><%= user.username %></h4>
+            <%= link_to avatar_for(user, size: 100), profile_path(user) %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

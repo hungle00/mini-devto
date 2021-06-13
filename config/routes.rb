@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :articles, param: :slug do
     post 'preview', on: :new
     member do
-      get :relative
+      get :relative, :hovercard
       put :publish, :unpublish
     end
 

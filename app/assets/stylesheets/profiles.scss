@@ -26,11 +26,8 @@
 }
 
 .stats {
-  overflow: auto;
   a {
     float: left;
-    padding: 0 10px;
-    border-left: 1px solid;
     color: gray;
     &:first-child {
       padding-left: 0;
@@ -41,15 +38,10 @@
       color: blue;
     }
   }
-  strong {
-    display: block;
-  }
 }
 
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
+.gravatar {
+  margin: 1px 1px;
+  vertical-align: middle;
+  border-radius: 50%;
 }
