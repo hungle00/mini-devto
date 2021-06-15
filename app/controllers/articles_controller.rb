@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish, :hovercard]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   before_action :authenticate_user!, except: %i[index show]
   impressionist :actions => [:show]
 
@@ -78,10 +78,6 @@ class ArticlesController < ApplicationController
   def preview
     preview = "<i>#{request.raw_post}</i>"
     render plain: preview
-  end
-
-  def hovercard
-    render layout: false
   end
 
   def relative

@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   get '/tagged', to: "home#tagged", as: :tagged
   get 'feed' => 'home#feed'
 
+  resources :users, param: :username do
+    get 'hovercard', on: :member
+  end
+
   resources :articles, param: :slug do
     post 'preview', on: :new
     member do
-      get :relative, :hovercard
+      get :relative
       put :publish, :unpublish
     end
 

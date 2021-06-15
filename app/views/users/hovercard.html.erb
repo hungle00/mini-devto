@@ -1,0 +1,11 @@
+<div class="card position-absolute" style="width: 18rem;" data-hovercard-target="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= avatar_for(@user, size: 25) %>
+      <%= @user.username %>
+    </h5>
+    <p class="card-text">
+      Joined <%= time_ago_in_words(@user.created_at) %> ago
+    </p>
+  </div>
+</div>

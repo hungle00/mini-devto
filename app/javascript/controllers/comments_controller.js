@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["commentList", "commentBody"]
 
   connect() {
-    console.log(this.commentBodyTarget)
+    //console.log(this.commentBodyTarget)
   }
 
   createSuccess(event) {

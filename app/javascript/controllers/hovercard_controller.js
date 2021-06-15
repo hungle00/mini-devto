@@ -1,16 +1,16 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["modal"];
+  static targets = ["card"];
   static values = { url: String };
 
   connect() {
     console.log(this.urlValue)
   }
 
-  /*show() {
-    if(this.hasModalTarget) {
-      console.log(modalTarget)
+  show() {
+    if(this.hasCardTarget) {
+      this.cardTarget.classList.remove("d-none")
     } else {
       fetch(this.urlValue)
       .then(r => r.text())
@@ -20,5 +20,17 @@ export default class extends Controller {
         this.element.appendChild(fragment);
       });
     }
-  }*/
+  }
+
+  hide() {
+    if (this.hasCardTarget) {
+      this.cardTarget.classList.add("d-none");
+    }
+  }
+
+  disconnect() {
+    if (this.hasCardTarget) {
+      this.cardTarget.remove();
+    }
+  }
 }
