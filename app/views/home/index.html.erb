@@ -1,44 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<header class="bg-light mb-4 row justify-content-between">
-  <div class="col-5">
-    <h1>All Articles</h1>
-    <%= link_to 'New Article', new_article_path %>
-  </div>
-  <div class="col-5">
-    <form class="d-flex mt-2">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </div>
-</header>
-
 <div class="row">
-  <div class="col-md-8 row">
-    <% @articles.each do |article| %>
-      <div class="col-6">
+  <div class="col-sm-8">
+    <div>
+      <h4 class="d-inline p-2"><%= link_to "All Articles", root_path %></h4> |
+      <h4 class="d-inline p-2"><%= link_to "Feeds", feed_path %></h4> |
+      <h4 class="d-inline"><%= link_to " My Articles", articles_path %></h4>
+    </div>
+    <hr>
+    <div id="posts">
+      <% @articles.each do |article| %>
         <%= render 'home/article', article: article %>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-md-4 ps-4">
-    <div class="mb-5">
-      <h3>All Tags</h3>
-      <hr>
-      <% @tags.each do |tag| %>
-        <%= link_to tag, tagged_path(tag: tag), class: "btn btn-sm btn-outline-primary" %>
       <% end %>
     </div>
-
-    <div>
-      <h3>Top Views</h3>
-      <hr>
-      <ul>
-        <% @articles.each do |article| %>
-          <li><%= article.title %> - <%= article.impressions.size %></li>
-        <% end %>
-      </ul> 
-    </div>
-
   </div>
+  <%= render 'home/right' %>
 </div>

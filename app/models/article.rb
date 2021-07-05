@@ -15,8 +15,6 @@ class Article < ApplicationRecord
     self.slug ||= "#{title.to_s.parameterize}-#{rand(36**6).to_s(36)}"
   end
 
-  after_create :create_notification
-
   acts_as_taggable_on :tags
 
   scope :published, -> { where(published: true) }
@@ -32,12 +30,11 @@ class Article < ApplicationRecord
     impression.where(impressionable_type: "Article")
   end
 
-  private
-
-  def create_notification
-    Notification.create!(
-      title: "Article #{self.title} is created",
-      user_id: 1
-    )
+  def self.search(term)
+    if term.present?
+      where("title LIKE ?", "%#{term}%")
+    else
+      all
+    end
   end
 end

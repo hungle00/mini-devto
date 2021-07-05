@@ -2,6 +2,7 @@
   "name": "blog_demo",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@popperjs/core": "^2.9.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "6.0.3-4",
@@ -10,6 +11,7 @@
     "@rails/webpacker": "5.3.0",
     "bootstrap": "^5.0.0-beta3",
     "chart.js": "^3.2.1",
+    "mdb-ui-kit": "^3.8.1",
     "stimulus": "^2.0.0",
     "trix": "1.2.0",
     "turbolinks": "^5.2.0",

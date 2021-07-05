@@ -4,9 +4,8 @@
     <title>BlogDemo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <script src="https://kit.fontawesome.com/e0e472e776.js" crossorigin="anonymous"></script>
-
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,8 +13,10 @@
   <body>
     
     <%= render 'layouts/navbar' %>
-    <div class="container">
+    <div class="container my-4">
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
+
   </body>
 </html>

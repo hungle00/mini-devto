@@ -1,20 +1,26 @@
-<div class="card article-<%= article.id %> border-0 position-relative">
-  <div class="card-body">
-    <h6 class="card-subtitle mb-2 text-muted bg-light"
-      data-controller="hovercard"
-      data-hovercard-url-value="<%= hovercard_user_path(article.user) %>"
-      data-action="mouseenter->hovercard#show mouseleave->hovercard#hide">
-      <%= link_to article.user.username, profile_path(article.user) %> posted:
-    </h6>
-    <h4 class="card-title"><%= link_to article.title, article %></h4>
-    <p class="card-text"><i><%= truncate(article.body.to_plain_text, length: 60) %></i></p>
-    <div class="card-text">
-      <%= article.created_at.strftime("%b %d") %> | 
-      <% if current_user.saved?(article) %>
-        <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :delete %>
-      <% else %>
-        <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :post %>
+<div class="card article-<%= article.id %> border-top-0 border-left-0 rounded-0">
+  <div class="row g-0">
+    <div class="col-sm-1 d-flex justify-content-center">
+      <% if article.user.avatar.attached? %>
+        <%= image_tag article.user.avatar, class: "rounded-circle mt-3 ms-2", height:"50", loading:"lazy"%>
       <% end %>
-    </div> 
+    </div>
+    <div class="col-sm-11">
+      <div class="card-body">
+        <h4 class="card-title"><%= link_to highlight(article.title, params[:search]), article %></h4>
+        <p class="card-text"><i><%= truncate(article.body.to_plain_text, length: 60) %></i></p>
+        <p class="card-text">
+          <small class="text-muted"><%= link_to article.user.username, profile_path(article.user) %> posted: updated 3 mins ago</small>
+        </p>
+        <div class="card-text">
+          <%= article.created_at.strftime("%b %d") %> | 
+          <% if current_user.saved?(article) %>
+            <%= link_to '<i class="fas fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :delete %>
+          <% else %>
+            <%= link_to '<i class="far fa-bookmark"></i>'.html_safe, article_clip_path(article), method: :post %>
+          <% end %>
+        </div> 
+      </div>
+    </div>
   </div>
 </div>

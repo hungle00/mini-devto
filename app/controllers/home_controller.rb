@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
     @articles = @articles.order(created_at: :desc)
 
+    @articles = @articles.search(params[:search])
+
     @tags = Article.tag_counts.most_used.map(&:name)
   end
 
@@ -16,6 +18,8 @@ class HomeController < ApplicationController
     else
       @articles = Article.all
     end
+
+    @tags = Article.tag_counts.most_used.map(&:name)
   end
 
   def feed

@@ -1,0 +1,20 @@
+  <div class="col-sm-4 d-none d-sm-block">
+    <div class="mb-5">
+      <h3>All Tags</h3>
+      <hr>
+      <% @tags.each do |tag| %>
+        <%= link_to tag, tagged_path(tag: tag), class: "btn btn-sm btn-outline-primary" %>
+      <% end %>
+    </div>
+
+    <div>
+      <h3>Top Views</h3>
+      <hr>
+      <ul>
+        <% @articles.each do |article| %>
+          <li><%= article.title %> - <%= article.impressions.size %></li>
+        <% end %>
+      </ul> 
+    </div>
+
+  </div>

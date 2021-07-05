@@ -15,7 +15,9 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import 'bootstrap';
+//import 'bootstrap';
+import 'mdb-ui-kit';
+import "@fortawesome/fontawesome-free/css/all"
 import './stylesheets/application.scss'
 import "controllers"
 

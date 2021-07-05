@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   show() {
-    if(this.hasCardTarget) {
+  /*  if(this.hasCardTarget) {
       this.cardTarget.classList.remove("d-none")
     } else {
       fetch(this.urlValue)
@@ -19,18 +19,21 @@ export default class extends Controller {
         const fragment = document.createRange().createContextualFragment(html);
         this.element.appendChild(fragment);
       });
-    }
+    }*/
   }
 
   hide() {
-    if (this.hasCardTarget) {
+  /*  if (this.hasCardTarget) {
       this.cardTarget.classList.add("d-none");
     }
+  */
   }
 
+
   disconnect() {
-    if (this.hasCardTarget) {
+  /*  if (this.hasCardTarget) {
       this.cardTarget.remove();
     }
+  */
   }
 }

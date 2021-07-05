@@ -1,42 +1,87 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
-    <%= link_to "Mini Medium", root_path, class:"navbar-brand"%>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid justify-content-between">
+    <!-- Left elements -->
+    <div class="d-flex">
+      <!-- Brand -->
+      <%= link_to "Mini Devto", root_path, class:"navbar-brand me-2 mb-1 d-flex align-items-center" %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item active">
-                <%= link_to "Feeds", feed_path, class:"nav-link" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "My Articles", articles_path, class:"nav-link" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "Notifications", notifications_path, class:"nav-link" %>
-            </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-            <% if current_user %>
-              <li class="nav-item dropdown px-4">
-                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <%= current_user.username %>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
-                  <li><%= link_to "Profile", profile_path(current_user), class:"dropdown-item" %></li>
-                  <li class="dropdown-divider"></li>
-                  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-                </ul>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "Create An Account", new_user_registration_path, class:"nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Login", new_user_session_path, class:"nav-link" %>
-              </li>
-            <% end %>
-        </ul>
+      <!-- Search form -->
+      <%= form_with(url: root_path, method: :get, local: true, class: "input-group w-auto my-auto d-none d-sm-flex ms-2") do |f| %>
+         <%= f.text_field :search, placeholder: "Search", 
+          class: "form-control rounded",
+          style: "min-width: 125px;" %>
+
+        <span class="input-group-text border-0 text-white d-none d-lg-flex"
+          ><i class="fas fa-search"></i
+        ></span>
+      <% end %>
     </div>
+    <!-- Left elements -->
+
+    <!-- Right elements -->
+    <ul class="navbar-nav flex-row">
+      <% if current_user %>
+        <li class="nav-item me-3 me-lg-1">
+          <%= link_to '<span><i class="fas fa-pen"></i>New Article</span>'.html_safe, new_article_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown me-3 me-lg-1">
+          <a
+            class="nav-link dropdown-toggle hidden-arrow"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bell fa-lg"></i>
+            <span class="badge rounded-pill badge-notification bg-danger">12</span>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li><a class="dropdown-item" href="#">Notifications</a></li>
+            <li class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"> .... </a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown mx-2 me-lg-1">
+          <a
+            class="nav-link dropdown-toggle hidden-arrow d-sm-flex align-items-sm-center"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://mdbootstrap.com/img/new/avatars/1.jpg"
+              class="rounded-circle"
+              height="22"
+              alt=""
+              loading="lazy"
+            />
+            <strong class="d-none d-sm-block ms-1"><%= current_user.username %></strong>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
+            <li><%= link_to "Profile", profile_path(current_user), class:"dropdown-item" %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li class="nav-item mx-2 me-lg-1">
+          <%= link_to "Register", new_user_registration_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item mx-2 me-lg-1">
+          <%= link_to "Login", new_user_session_path, class:"nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+    <!-- Right elements -->
+  </div>
 </nav>

@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Articles</h1>
-<p>Number of Article: <%= @articles_count %></p>
+<h2>#<%= params[:tag] %></h2>
 
 <div class="row">
-  <% @articles.each do |article| %>
-    <%= render 'home/article', article: article %>
-  <% end %>
+  <div class="col-sm-8">
+    <% @articles.each do |article| %>
+      <%= render 'home/article', article: article %>
+    <% end %>
+  </div>
+  <%= render 'home/right' %>
 </div>
 
 
