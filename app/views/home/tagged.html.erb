@@ -4,9 +4,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <% @articles.each do |article| %>
-      <%= render 'home/article', article: article %>
-    <% end %>
+    <%= render 'home/articles' %>
   </div>
   <%= render 'home/right' %>
 </div>

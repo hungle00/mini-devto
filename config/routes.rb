@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   get '/tagged', to: "home#tagged", as: :tagged
   get 'feed' => 'home#feed'
 
-  resources :users, param: :username do
+  resources :users do
     get 'hovercard', on: :member
   end
 
-  resources :articles, param: :slug do
+  resources :articles do
     post 'preview', on: :new
     member do
       get :relative
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :tags, only: [:index]
 
-  resources :profiles, param: :username, only: [:show] do
+  resources :profiles, only: [:show] do
     member do
       get :following, :followers
     end

@@ -53,7 +53,7 @@
       <% end %>
     </ul>
 
-    <p><strong>Articles same tag</strong></p>
+    <p><strong>More from <%= @article.user.username %></strong></p>
     <ul data-controller="relative"
         data-relative-target="articles"
         data-relative-url-value="<%= relative_article_path(@article) %>">

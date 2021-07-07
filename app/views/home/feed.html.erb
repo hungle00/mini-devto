@@ -4,19 +4,16 @@
     <div>
       <h4 class="d-inline p-2"><%= link_to "All Articles", root_path %></h4> |
       <h4 class="d-inline p-2"><%= link_to "Feeds", feed_path %></h4> |
-      <h4 class="d-inline"><%= link_to " My Articles", articles_path %></h4>
+      <h4 class="d-inline p-2"><%= link_to " My Articles", articles_path %></h4>
     </div>
     <hr>
-    <div id="posts">
-      <% @articles.each do |article| %>
-        <%= render 'home/article', article: article %>
-      <% end %>
+    <div id="articles">
+      <%= render 'home/articles' %>
     </div>
   </div>
   <div class="col-sm-4">
     <h4 class="my-2">Reading List</h5>
     <% @clips.each do |clip| %>
-      <%= render 'home/article', article: clip.article %>
     <% end %>
   </div>
 </div>

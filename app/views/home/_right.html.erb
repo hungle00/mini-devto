@@ -8,11 +8,11 @@
     </div>
 
     <div>
-      <h3>Top Views</h3>
+      <h3>Top Authors</h3>
       <hr>
       <ul>
-        <% @articles.each do |article| %>
-          <li><%= article.title %> - <%= article.impressions.size %></li>
+        <% User.all.each do |user| %>
+          <li><%= link_to user.username, root_path(author: user) %> - <%= user.articles.count %></li>
         <% end %>
       </ul> 
     </div>

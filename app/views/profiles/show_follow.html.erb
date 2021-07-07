@@ -7,7 +7,7 @@
     </section>
 
     <section class="py-2">
-      <%= avatar_for @user %>
+      <%= avatar_for @user, size: 120 %>
       <%= render 'profiles/follows' %>
     </section>
   </div>
@@ -20,7 +20,7 @@
         <% @users.each do |user| %>
           <div class="col-4">
             <h4><%= user.username %></h4>
-            <%= link_to avatar_for(user, size: 100), profile_path(user) %>
+            <%= link_to avatar_for(user, size: 90), profile_path(user) %>
           </div>
         <% end %>
       </div>

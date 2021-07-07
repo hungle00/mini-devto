@@ -55,13 +55,7 @@
             data-mdb-toggle="dropdown"
             aria-expanded="false"
           >
-            <img
-              src="https://mdbootstrap.com/img/new/avatars/1.jpg"
-              class="rounded-circle"
-              height="22"
-              alt=""
-              loading="lazy"
-            />
+            <%= avatar_for current_user %>
             <strong class="d-none d-sm-block ms-1"><%= current_user.username %></strong>
           </a>
           <ul

@@ -1,15 +1,23 @@
 class HomeController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @articles = Article.all.includes(:user)
+    @pagy, @articles = pagy(Article.includes(:user, :impressions).order(created_at: :desc), items: 12)
 
     @articles = @articles.authored_by(params[:author]) if params[:author].present?
     @articles = @articles.favorited_by(params[:favorited]) if params[:favorited].present?
 
-    @articles = @articles.order(created_at: :desc)
-
     @articles = @articles.search(params[:search])
 
     @tags = Article.tag_counts.most_used.map(&:name)
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: "articles", formats: [:html]), pagination: view_context.pagy_nav(@pagy) }
+      }
+    end
+
   end
 
   def tagged

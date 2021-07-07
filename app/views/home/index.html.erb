@@ -8,10 +8,13 @@
       <h4 class="d-inline"><%= link_to " My Articles", articles_path %></h4>
     </div>
     <hr>
-    <div id="posts">
-      <% @articles.each do |article| %>
-        <%= render 'home/article', article: article %>
-      <% end %>
+    <div data-controller="infinite-scroll">
+      <div data-infinite-scroll-target="entries">
+        <%= render 'home/articles' %>
+      </div>
+      <div data-infinite-scroll-target="pagination">
+        <%== pagy_nav @pagy %>
+      </div>
     </div>
   </div>
   <%= render 'home/right' %>
