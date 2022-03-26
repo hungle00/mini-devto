@@ -9,11 +9,10 @@
       <!-- Search form -->
       <%= form_with(url: root_path, method: :get, local: true, class: "input-group w-auto my-auto d-none d-sm-flex ms-2") do |f| %>
          <%= f.text_field :search, placeholder: "Search", 
-          class: "form-control rounded",
-          style: "min-width: 125px;" %>
+          class: "form-control rounded" %>
 
         <span class="input-group-text border-0 text-white d-none d-lg-flex"
-          ><i class="fas fa-search"></i
+          ><i class="fa fa-search"></i
         ></span>
       <% end %>
     </div>
@@ -34,7 +33,7 @@
             data-mdb-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="fas fa-bell fa-lg"></i>
+            <i class="fa fa-bell fa-lg"></i>
             <span class="badge rounded-pill badge-notification bg-danger">12</span>
           </a>
           <ul

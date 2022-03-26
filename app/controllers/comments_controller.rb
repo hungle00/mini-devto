@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     end
 
     def set_article!
-      @article = Article.find_by!(slug: params[:article_slug])
+      @article = Article.friendly.find(params[:article_id])
     end
 
     # Only allow a list of trusted parameters through.

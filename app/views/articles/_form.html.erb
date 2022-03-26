@@ -3,18 +3,16 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <div data-controller="composer">
+  <div class="my-2">
+    <%= f.input :title,  required: false %>
+    <div>
       <%= f.label :content %>
       <%= f.rich_text_area :body, data: { "composer-target": "tweet" } %>
-      <button data-action="click->composer#preview" class="btn btn-sm btn-outline-primary my-2">Preview</button>
-      <div data-composer-target="output"></div>
     </div>
-    <%= f.input :tag_list, multiple: :true, class: "selectize" %>
+    <%= f.input :tag_list, multiple: :true, class: "selectize", placeholder: "#rails, #ruby, .." %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-outline-primary" %>
   </div>
 <% end %>

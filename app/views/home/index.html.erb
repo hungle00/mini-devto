@@ -10,7 +10,7 @@
     <hr>
     <div data-controller="infinite-scroll">
       <div data-infinite-scroll-target="entries">
-        <%= render 'home/articles' %>
+        <%= render partial: "article", collection: @articles %>
       </div>
       <div data-infinite-scroll-target="pagination">
         <%== pagy_nav @pagy %>

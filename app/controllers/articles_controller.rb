@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish, :unpublish, :relative]
   before_action :authenticate_user!, except: %i[index show]
   impressionist :actions => [:show]
 
@@ -81,7 +81,6 @@ class ArticlesController < ApplicationController
   end
 
   def relative
-    @article = Article.find_by!(slug: params[:slug])
     @articles = @article.find_related_tags
 
     render json: @articles
