@@ -16,34 +16,21 @@
     </div>
 
     <hr>
-    <div data-controller="comments">
-      <div class="card mb-3">
-        <%# NOTE COMMENT STEP 3: Wrap the comments in `<div id="comments">` so that you can select the wrapper when using javascript in `app/views/comments/create.js.erb`. %>
-        <div data-comments-target="commentList" class="card-body">
-          <% @article.comments.each do |comment| %>
-            <%= render partial: "comments/comment", locals: { comment: comment } %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-header">
-          <h4>Add A Comment:</h4>
-        </div>
-        <div class="card-body">
-            <%# NOTE COMMENT STEP 3: Load the comment form. %>
-          <%= render "comments/form" %>
-        </div>
-      </div>
-    </div>
+    <%= turbo_stream_from :comments %>
+    <%= turbo_frame_tag :comments do %>
+      <%= render @article.comments %>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= turbo_frame_tag :new_comment, src: new_article_comment_path(@article) %>
+    <% end %>
     
   </div>
 
   <div class="col-sm-4">
     <div>
       <p class=""><i>Upvote: <%= @article.favorites_count %></i><p>
-      <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary d-inline' %>
-      <%= link_to '<i class="fas fa-thumbs-down"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger d-inline' %>
+      <%= link_to '<i class="fa fa-thumbs-up"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :post, class: 'btn btn-sm btn-outline-primary d-inline' %>
+      <%= link_to '<i class="fa fa-thumbs-down"></i>'.html_safe, article_favorite_path(@article), remote: true, method: :delete, class: 'btn btn-sm btn-outline-danger d-inline' %>
     </div>
 
     <p><strong>Tags</strong></p>

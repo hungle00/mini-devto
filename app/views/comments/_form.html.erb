@@ -1,12 +1,17 @@
-<%= simple_form_for([@article, @comment], remote: true, data: { action: "ajax:success->comments#createSuccess", 'comments-target': "commentBody" }) do |f| %>
+<%= simple_form_for([@article, comment], class: "contents") do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :body %>
+    <%= f.input :body , label: 'Comment'%>
   </div>
 
-  <div class="form-actions mt-2">
-    <%= f.button :submit %>
+  <div class="form-actions my-2">
+    <% if controller.action_name == 'edit' %>
+      <%= f.button :submit, class: "btn btn-sm btn-outline-primary" %>
+      <%= link_to 'Back', @article, class: 'btn btn-sm btn-outline-danger' %>
+    <% else %>
+      <%= f.button :submit, class: "btn btn-outline-primary" %>
+    <% end %>
   </div>
 <% end %>

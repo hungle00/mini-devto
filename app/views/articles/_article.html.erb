@@ -1,20 +1,20 @@
-      <div class="card article-<%= article.id %>" data-controller="published">
-        <div class="card-body">
-          <div class="card-title position-relative">
-            <h4><%= link_to article.title, article %></h4>
-            <div class="position-absolute top-0 end-0">
-              <% if article.published? %>
-                <%= link_to 'Unpublish', unpublish_article_path(article), method: :put, class: 'btn btn-sm btn-warning',
-                    remote: true, data: { action: "ajax:success->published#unpublish" } %>
-              <% else %>
-                <%= link_to 'Publish', publish_article_path(article), method: :put, class: 'btn btn-sm btn-success',
-                    remote: true, data: { action: "ajax:success->published#publish" } %>
-              <% end %>
-            </div>
-          </div>
-          <p class="card-text"><p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
-          <p class="card-text">Posted in: <%= article.created_at.strftime("%b %d") %></p>
-          <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
-          <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
-        </div>
+<div class="card article-<%= article.id %>" data-controller="published">
+  <div class="card-body">
+    <div class="card-title position-relative">
+      <h4><%= link_to article.title, article %></h4>
+      <div class="position-absolute top-0 end-0">
+        <% if article.published? %>
+          <%= link_to 'Unpublish', unpublish_article_path(article), method: :put, class: 'btn btn-sm btn-warning',
+              remote: true, data: { action: "ajax:success->published#unpublish" } %>
+        <% else %>
+          <%= link_to 'Publish', publish_article_path(article), method: :put, class: 'btn btn-sm btn-success',
+              remote: true, data: { action: "ajax:success->published#publish" } %>
+        <% end %>
       </div>
+    </div>
+    <p class="card-text"><p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
+    <p class="card-text">Posted in: <%= article.created_at.strftime("%b %d") %></p>
+    <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
+    <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

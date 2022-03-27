@@ -1,13 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_article!, only: [:create, :edit, :update]
+  before_action :set_article!, only: [:new, :create, :edit, :update]
   before_action :authenticate_user!, except: [:index]
 
-  # GET /comments
-  # GET /comments.json
-  #def index
-  #  @comments = @article.comments.all
-  #end
+  def new
+    @comment = @article.comments.build
+  end
 
   def edit
   end
@@ -16,14 +14,21 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.build(comment_params)
     @comment.user = current_user
-
-    if @comment.save
-      render partial: 'comment', locals: { comment: @comment }, status: :ok
-        #render partial: 'show', locals: { comment: comment }, status: :ok
-    else
-      render partial: 'form', locals: { comment: @comment }, status: :unprocessable_entity
+    
+    respond_to do |format|
+      if @comment.save
+        format.turbo_stream {
+          render turbo_stream: [
+            turbo_stream.prepend('comments', partial: 'comment', locals: { comment: @comment }),
+            turbo_stream.replace("new_comment", partial: "comments/form",
+                                  locals: { comment: @article.comments.build })
+          ] 
+        }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -32,11 +37,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment.article, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.turbo_stream
       else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -44,8 +47,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @comment.destroy
-    redirect_to @comment.article, notice: "Comment successfully deleted."
+    if @comment.user == current_user
+      @comment.destroy
+      redirect_to @comment.article, notice: "Comment successfully deleted."
+    end
   end
 
   private

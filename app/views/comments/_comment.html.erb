@@ -1,8 +1,17 @@
-<div class="py-2 border-bottom comment comment-<%= comment.id%>">
+<%= turbo_frame_tag dom_id comment do %>
+  <div class="py-2 border-bottom comment">
     <p><%= comment.body %></p>
-    <small class="d-inline-block mb-3 text-secondary border-bottom">Posted <%= time_ago_in_words(comment.created_at) %> ago by by <%= comment.user.username %></small>
+    <small class="d-inline-block mb-3 text-secondary border-bottom">
+      Posted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.username %>
+    </small>
     <div class="btn-group ms-4">
-      <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_comment_path(comment.article, comment), class: "btn btn-sm btn-outline-primary" %>
-      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article_comment_path(comment.article, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+      <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_article_comment_path(comment.article, comment),
+                          data: { turbo_frame: dom_id(comment) }, class: 'btn btn-sm btn-outline-primary me-2' %>
+      <%= button_to article_comment_path(comment.article, comment), method: :delete,
+        form: { data: { turbo_confirm: 'Are you sure?' }}, data: { turbo_frame_target: :_top },
+        class: "btn btn-sm btn-outline-danger" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
     </div>
-</div>
+  </div>
+<% end %>

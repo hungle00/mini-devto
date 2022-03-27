@@ -1,6 +1,6 @@
   <div class="col-sm-4 d-none d-sm-block">
     <div class="mb-5">
-      <h3>All Tags</h3>
+      <h4>All Tags</h4>
       <hr>
       <% @tags.each do |tag| %>
         <%= link_to tag, tagged_path(tag: tag), class: "btn btn-sm btn-outline-primary" %>
@@ -8,7 +8,7 @@
     </div>
 
     <div>
-      <h3>Top Authors</h3>
+      <h4>Top Authors</h4>
       <hr>
       <ul>
         <% User.all.each do |user| %>

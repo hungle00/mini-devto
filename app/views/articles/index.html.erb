@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="mb-4">
-  <h4 class="d-inline p-2"><%= link_to "All Articles", root_path %></h4> |
-  <h4 class="d-inline p-2"><%= link_to "Feeds", feed_path %></h4> |
-  <h4 class="d-inline p-2"><%= link_to " My Articles", articles_path %></h4> |
-  <h4 class="d-inline p-2"><%= link_to 'New Article', new_article_path %></h4>
+  <%= render "home/tab" %>
 </div>
-
-<hr>
 
 <div class="row">
   <div class="col-6 publish">

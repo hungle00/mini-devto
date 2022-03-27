@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
   <div class="col-sm-8">
-    <div>
-      <h4 class="d-inline p-2"><%= link_to "All Articles", root_path %></h4> |
-      <h4 class="d-inline p-2"><%= link_to "Feeds", feed_path %></h4> |
-      <h4 class="d-inline p-2"><%= link_to " My Articles", articles_path %></h4>
+    <div class="mb-4">
+      <%= render "home/tab" %>
     </div>
-    <hr>
     <div id="articles">
-      <%= render 'home/articles' %>
+      <%= render partial: "article", collection: @articles %>
     </div>
   </div>
   <div class="col-sm-4">
