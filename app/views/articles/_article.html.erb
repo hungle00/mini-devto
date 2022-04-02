@@ -14,7 +14,7 @@
     </div>
     <p class="card-text"><p><i><%= truncate(article.body.to_plain_text, length: 50) %></i></p>
     <p class="card-text">Posted in: <%= article.created_at.strftime("%b %d") %></p>
-    <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
-    <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+    <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_article_path(article), class: "btn btn-sm btn-outline-primary" %>
+    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, article, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
   </div>
 </div>

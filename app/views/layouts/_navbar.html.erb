@@ -25,35 +25,27 @@
           <%= link_to '<span><i class="fas fa-pen"></i>New Article</span>'.html_safe, new_article_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown me-3 me-lg-1">
-          <a
+          <a href="#" role="button"
             class="nav-link dropdown-toggle hidden-arrow"
-            href="#"
             id="navbarDropdownMenuLink"
-            role="button"
             data-mdb-toggle="dropdown"
             aria-expanded="false"
           >
             <i class="fa fa-bell fa-lg"></i>
             <span class="badge rounded-pill badge-notification bg-danger">12</span>
           </a>
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <li><a class="dropdown-item" href="#">Notifications</a></li>
-            <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#"> .... </a></li>
+          <ul class="dropdown-menu dropdown-menu-end" style="width: 250px"
+            aria-labelledby="navbarDropdownMenuLink">
+            <li><%= link_to 'Notifications', notifications_path, class: "dropdown-item border-bottom text-uppercase"%></li>
+            <%= render 'shared/notification' %>
           </ul>
         </li>
         <li class="nav-item dropdown mx-2 me-lg-1">
-          <a
+          <a href="#" role="button"
             class="nav-link dropdown-toggle hidden-arrow d-sm-flex align-items-sm-center"
-            href="#"
             id="navbarDropdownMenuLink"
-            role="button"
             data-mdb-toggle="dropdown"
-            aria-expanded="false"
-          >
+            aria-expanded="false">
             <%= avatar_for current_user %>
             <strong class="d-none d-sm-block ms-1"><%= current_user.username %></strong>
           </a>
@@ -63,7 +55,7 @@
           >
             <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
             <li><%= link_to "Profile", profile_path(current_user), class:"dropdown-item" %></li>
-            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+            <li><%= button_to 'Log out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: "dropdown-item" %></li>
           </ul>
         </li>
       <% else %>

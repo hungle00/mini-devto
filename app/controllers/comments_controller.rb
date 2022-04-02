@@ -19,15 +19,9 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.save
-        format.turbo_stream {
-          render turbo_stream: [
-            turbo_stream.prepend('comments', partial: 'comment', locals: { comment: @comment }),
-            turbo_stream.replace("new_comment", partial: "comments/form",
-                                  locals: { comment: @article.comments.build })
-          ] 
-        }
+        format.turbo_stream
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end

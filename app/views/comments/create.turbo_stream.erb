@@ -3,7 +3,9 @@
   <%= turbo_stream.update 'notice', partial: 'shared/notice',
       locals: { notice: 'Something went wrong', status: 'danger'} %>
 <% else %>
-  <%= turbo_stream.replace(@comment) %>
+  <%= turbo_stream.prepend('comments', partial: 'comment', locals: { comment: @comment }) %>
   <%= turbo_stream.update 'notice', partial: 'shared/notice',
-      locals: { notice: 'Comment updated successfully', status: 'success'} %>
+      locals: { notice: 'Comment created successfully', status: 'success'} %>
+  <%= turbo_stream.replace("new_comment", partial: "comments/form",
+                                  locals: { comment: @article.comments.build }) %>
 <% end %>
