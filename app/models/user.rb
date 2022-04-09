@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   
   has_many :articles, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, as: :recipient
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :clips, dependent: :destroy

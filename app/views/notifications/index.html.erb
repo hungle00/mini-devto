@@ -14,8 +14,8 @@
           <% end %>
         </div>
         <div class="col">
-          <strong class="<%= notification.notification_type %>"><%= notification.notification_type.titleize %>:</strong>
-          <%= simple_format notification.title %>
+          <%= simple_format notification.to_notification.message %>
+          <strong> Status: <%= notification.read? ? "Read" : "Unread" %></strong>
         </div>
       </div>
     <% end %>

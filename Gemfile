@@ -62,3 +62,4 @@ gem 'jsbundling-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'font-awesome-rails'
+gem "noticed", "~> 1.5"

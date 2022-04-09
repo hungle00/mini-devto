@@ -32,12 +32,12 @@
             aria-expanded="false"
           >
             <i class="fa fa-bell fa-lg"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">12</span>
+            <span class="badge rounded-pill badge-notification bg-danger"><%= @notifications.count %></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" style="width: 250px"
             aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to 'Notifications', notifications_path, class: "dropdown-item border-bottom text-uppercase"%></li>
-            <%= render 'shared/notification' %>
+            <%= render partial: 'shared/notification', collection: @notifications %>
           </ul>
         </li>
         <li class="nav-item dropdown mx-2 me-lg-1">
