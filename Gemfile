@@ -17,16 +17,13 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'pg', '~> 1.3'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-
-group :production do
-  gem 'pg'
-end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,7 +35,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'pry-rails'
-  gem 'sqlite3', "~> 1.4"
 end
 
 group :test do
