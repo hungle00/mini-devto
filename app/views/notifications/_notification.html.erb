@@ -1,0 +1,12 @@
+<div class="row" id="<%= dom_id(notification) %>">
+  <div class="col-sm-1 text-center">
+    <%= link_to notifications_path(anchor: dom_id(notification)) do %>
+        <strong><%= notification.created_at.strftime("%b %d") %></strong>
+    <% end %>
+    </div>
+  <div class="col">
+    <%= simple_format notification.to_notification.message %>
+    <strong> Status: <%= notification.read? ? "Read" : "Unread" %></strong>
+  </div>
+  <div><hr /></div>
+</div>

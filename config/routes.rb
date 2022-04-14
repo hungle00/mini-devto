@@ -21,7 +21,11 @@ Rails.application.routes.draw do
     resource :clip, only: %i[create destroy]
     resources :comments
   end
-  resources :notifications, only: [:index]
+  resources :notifications, only: [:index] do
+    collection do
+      post '/mark_as_read', to: "notifications#read_all"
+    end
+  end
   resources :tags, only: [:index]
 
   resources :profiles, only: [:show] do

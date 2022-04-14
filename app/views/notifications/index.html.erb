@@ -1,27 +1,17 @@
-<h1>What's New</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>What's New</h1>
+  <%= button_to mark_as_read_notifications_path, method: :post, class: "btn btn-primary" do %>
+    Mark all as read
+  <% end %>
+</div>
 
 <div class="card">
   <div class="card-body">
-    <% @notifications.each_with_index do |notification, index| %>
-      <% if index != 0 %>
-        <div class="row"><div class="col"><hr /></div></div>
-      <% end %>
-
-      <div class="row announcement" id="<%= dom_id(notification) %>">
-        <div class="col-sm-1 text-center">
-          <%= link_to notifications_path(anchor: dom_id(notification)) do %>
-            <strong><%= notification.created_at.strftime("%b %d") %></strong>
-          <% end %>
-        </div>
-        <div class="col">
-          <%= simple_format notification.to_notification.message %>
-          <strong> Status: <%= notification.read? ? "Read" : "Unread" %></strong>
-        </div>
-      </div>
-    <% end %>
-
     <% if @notifications.empty? %>
       <div>Exciting stuff coming very soon!</div>
     <% end %>
+    <div id="notifications">
+      <%= render @notifications %>
+    </div>
   </div>
 </div>

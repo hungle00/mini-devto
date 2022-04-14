@@ -32,12 +32,20 @@
             aria-expanded="false"
           >
             <i class="fa fa-bell fa-lg"></i>
-            <span class="badge rounded-pill badge-notification bg-danger"><%= @notifications.count %></span>
+            <%= turbo_stream_from current_user, :notifications_counter %>
+            <span class="badge rounded-pill badge-notification bg-danger" id="notifications_counter">
+              <%= @notifications.count %>
+            </span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" style="width: 250px"
             aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to 'Notifications', notifications_path, class: "dropdown-item border-bottom text-uppercase"%></li>
-            <%= render partial: 'shared/notification', collection: @notifications %>
+            <%= turbo_stream_from current_user, :notifications %>
+            <%= turbo_frame_tag "notifications", target: "_top" do %>
+              <div id="notifications-list">
+                <%= render partial: 'shared/notification', collection: @notifications %>
+              </div>
+            <% end %>
           </ul>
         </li>
         <li class="nav-item dropdown mx-2 me-lg-1">
